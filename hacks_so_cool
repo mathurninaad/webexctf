@@ -300,5 +300,5 @@
     i32.store8 offset=1072
     return
   )
-  (data (i32.const 1024) "picoCTF{d88090e679c48f3945fcaa6a7d6d70c5}\00\00")
+  (data (i32.const 1024) "HAHAHAHA Final Part: gu7$?}\00\00")
 )

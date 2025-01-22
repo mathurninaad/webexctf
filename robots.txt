@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /index.html
-# Part 3: t_0f_pl4c
+# Part 4  of the flag: s_4m4zin
 # This is an apache server (I guess)... can you *Access* the next flag?
