@@ -4,34 +4,73 @@
     <title>Just Find the Flag</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="application/javascript" src="script.js"></script>
+    <script>
+      // Function to set a cookie
+      function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+      }
+
+      // Function to get a cookie value
+      function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const c = cookies[i].trim();
+          if (c.indexOf(name + "=") === 0) {
+            return c.substring(name.length + 1);
+          }
+        }
+        return null;
+      }
+
+      // Function to check and reveal the flag
+      function checkFlag() {
+        const flagStatus = getCookie('flagStatus');
+        if (flagStatus === 'true') {
+          document.getElementById('flagPart1').style.display = 'block';
+        }
+      }
+
+      // Initialize the cookie on page load
+      window.onload = function () {
+        if (!getCookie('flagStatus')) {
+          setCookie('flagStatus', 'false', 1);
+        }
+        checkFlag();
+      };
+    </script>
   </head>
 
   <body>
     <div class="container">
       <header>
-		<h1>Welcome to LNMHacks!!!</h1>
+        <h1>Welcome to LNMHacks!!!</h1>
       </header>
 
       <button class="tablink" onclick="openTab('tabintro', this, '#222')" id="defaultOpen">Click me!</button>
       <button class="tablink" onclick="openTab('tababout', this, '#222')">No! Click Me!</button>
 
       <div id="tabintro" class="tabcontent">
-		<h3>Click me!</h3>
-		<p>Don't criticize the UI!</p>
+        <h3>Click me!</h3>
+        <p>Don't criticize the UI!</p>
       </div>
 
       <div id="tababout" class="tabcontent">
-		<h3>No! Click Me!</h3>
-		<p>You can find these <br/>
-		  HTML <br/>
-		  CSS <br/>
-		  JS (JavaScript)
-		</p>
-	<!--second part of the flag: OO_t -->
+        <h3>No! Click Me!</h3>
+        <p>You can find these <br />
+          HTML <br />
+          CSS <br />
+          JS (JavaScript)
+        </p>
+        <!--second part of the flag: OO_t -->
       </div>
 
+      <div>
+        <button onclick="unlockFlag()">Unlock the Flag</button>
+        <p id="flagPart1" style="display: none;">First part of the flag: hacks{WH</p>
+      </div>
     </div>
-
   </body>
 </html>
